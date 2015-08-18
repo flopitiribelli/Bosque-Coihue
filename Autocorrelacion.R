@@ -1,4 +1,4 @@
-setwd("C:/Users/flor/Google Drive/Fuego/Datos")
+setwd("C:/Users/flor/Documents/Bosque-Coihue")
 library("R2WinBUGS")
 library("plyr")
 datos <- read.table("multicoihue.txt", header=T)
