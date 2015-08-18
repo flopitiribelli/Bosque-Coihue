@@ -1,0 +1,21 @@
+
+    model { 
+    for (i in 1:n){
+    y[i] ~ dbin (p.bound[i], N[i]) 
+    p.bound[i] <- max(0, min(1, p[i]))
+    logit(p[i]) <- Xbeta[i]
+    Xbeta[i] <- b0 + b1 * tsf[i] + b2[transecta[i]]*autocov[i]
+    }
+    
+    for (j in 1:J) {
+    b2 [ j ] ~ dnorm (mu.b2, tau.b2)
+    } 
+    
+    b0 ~ dnorm (0, .0001)
+    b1 ~ dnorm (0, .0001)
+    mu.b2 ~ dnorm (0, .0001)
+    sd.b2 ~ dunif (0, 100)
+    tau.b2 <- 1/pow(sd.b2,2)
+    }
+    
+    
